@@ -7,20 +7,26 @@
 # Requiere privilegios de root para crear usuarios y asignar contraseñas.
 #ej1_crea_usuarios.sh  [-i]  [-c contraseña ]   Archivo_con_los_usuarios_a_crea
 
-if [ $# -lt 1 ]
+if [ $# -lt 1 ] #Se hace Test para comprobar que hay al menos un argumento
 then
-    echo "Uso: $0  [-i]  [-c contraseña] Archivo_con_los_usuarios_a_crear" >&2
+    echo "Uso: $0  [-i]  [-c contraseña] Archivo_con_los_usuarios_a_crear" >&2 # Mensaje de error Si no hay argumentos
     exit 1 
 fi
 
-while getopts ":ic:" modificador
+while getopts ":ic:" modificador #Bucle para analizar las opciones ingresadas
 do
     case $modificador in
-        i) echo "INTERACTIVO=true"
+        i) echo "Modo Interactivo activado"
            INTERACTIVO=true
         ;;
         c)  # Guardar el argumento pasado a -c en la variable CONTRASENA
             CONTRASENA="$OPTARG"
+
+            if [ -z "$CONTRASENA" ]; then
+                echo "Error: La opción -c requiere un argumento de contraseña." >&2
+                exit 5
+            fi
+
             echo "Opción -c: se guardó CONTRASENA='$CONTRASENA'"
         ;;
         *) echo "Opción inválida: -$OPTARG" >&2
@@ -44,10 +50,15 @@ fi
 
 ArchivoUsrs="$1"
 
-if [ ! -f "$ArchivoUsrs" ]
+if [ ! -f "$ArchivoUsrs" ] || [ ! -r "$ArchivoUsrs" ]
 then
-    echo "Archivo '$ArchivoUsrs' no encontrado." >&2
+    echo "Archivo '$ArchivoUsrs' no encontrado o no legible." >&2
     exit 3
+fi
+
+if [ -z "$CONTRASENA" ]
+then
+    CONTRASENA="BienvenidosaDevops123"
 fi
 
 usuarios_creados=0
@@ -57,6 +68,12 @@ then
     for i in $(seq 1 $maxlineas); do # Leer línea por línea
     
         linea=$(tail -n +$i "$ArchivoUsrs" | head -n 1) # Asignamos a la variable linea la línea i-ésima del archivo
+            
+            if [ "$(echo "$linea" | grep -o ":" | wc -l)" -ne 4 ]; then
+                echo "Línea $i mal formada. Se esperan 5 campos separados por ':'. Se omite." >&2
+                continue
+            fi
+
         nombre=$(echo "$linea" | cut -d':' -f1 | xargs) #Se asigna el primer campo a la variable nombre
         comentario=$(echo "$linea" | cut -d':' -f2 | xargs) #Se asigna el segundo campo a la variable comentario
         home=$(echo "$linea" | cut -d':' -f3 | xargs) #Se asigna el tercer campo a la variable home
@@ -88,12 +105,53 @@ then
                 echo -e " Comentario='$comentario' \n Dir Home='$home' \n Crear_Home='$creahome' \n Shell='$bashusr' \n"
                 usuarios_creados=$((usuarios_creados + 1))
         fi
-    done 
-                
+    done
     echo "Total de usuarios creados: $usuarios_creados"
     exit 0
+
 else
     echo "Modo no interactivo."
+
+    for i in $(seq 1 $maxlineas); do # Leer línea por línea
+    
+        linea=$(tail -n +$i "$ArchivoUsrs" | head -n 1) # Asignamos a la variable linea la línea i-ésima del archivo
+
+        if [ "$(echo "$linea" | grep -o ":" | wc -l)" -ne 4 ]; then 
+                echo "Línea $i mal formada. Se esperan 5 campos separados por ':'. Se omite." >&2
+                continue
+            fi
+
+        nombre=$(echo "$linea" | cut -d':' -f1 | xargs) #Se asigna el primer campo a la variable nombre
+        comentario=$(echo "$linea" | cut -d':' -f2 | xargs) #Se asigna el segundo campo a la variable comentario
+        home=$(echo "$linea" | cut -d':' -f3 | xargs) #Se asigna el tercer campo a la variable home
+        creahome=$(echo "$linea" | cut -d':' -f4 | xargs) #Se asigna el cuarto campo a la variable creahome
+        bashusr=$(echo "$linea" | cut -d':' -f5 | xargs) #Se asigna el quinto campo a la variable bashusr
+
+        #echo "Procesando línea $i: Usuario='$nombre', Comentario='$comentario', Home='$home', Crear_Home='$creahome', Shell='$bashusr'"
+
+        if [ "$creahome" = "SI" ] || [ "$creahome"   = "si" ]; then
+            crearopcion="-m"
+       fi 
+
+       if [ "$creahome" = "NO" ] || [ "$creahome" = "" ]; then
+            crearopcion="-M"
+        fi
+        if [ -n "$home" ]; then
+            homeopt="-d $home"
+            else
+            homeopt=""
+        fi
+   
+        useradd $crearopcion $homeopt -c "$comentario" -s "$bashusr" -p "$(openssl passwd -6 "$CONTRASENA")" "$nombre"
+
+        if [ $? -ne 0 ]; then
+            echo "Error al crear el usuario '$nombre'." >&2
+            continue
+            else
+                echo "Usuario '$nombre' creado con éxito."
+                usuarios_creados=$((usuarios_creados + 1))
+        fi
+    done 
 fi
 
  
