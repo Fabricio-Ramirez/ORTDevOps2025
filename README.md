@@ -40,3 +40,5 @@ sudo ./aws/install
 ```bash
   pip3 install boto3
 ```
+- [ ] Clonar repositorio con HTTPS https://github.com/ORT-AII-ProgramacionDevOps/obligatorio.git como ZIP
+
