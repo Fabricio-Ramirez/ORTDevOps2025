@@ -17,4 +17,26 @@
   sudo ./ej1_crea_usuarios.sh [-i] [-c] (password) (archivousuarios)
   ```
 
+
 ## Parte 2 : Script Python 
+
+  > [!CAUTION]
+  > Para un correcto uso del código, se necesitan instalar los siguientes servicios de manera mandatoria:
+1. Instalar Python:
+```bash
+  sudo apt install python3
+```
+2. Instalación de PIP
+```bash
+  sudo apt install python3-pip
+```
+3. Instalacion de AWS CLI
+```bash
+ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+  ```
+4. Instalación de BOTO3
+```bash
+  pip3 install boto3
+```
