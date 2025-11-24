@@ -22,44 +22,33 @@
   > [!CAUTION]
   > Requisitos necesarios previos al Despliegue de las Instancias y Aplicaciones en AWS:
 
-	* Cuenta de Github
-
-	* Git:
- 
-		Instalación de GIT
+* Cuenta de Github
+* Git:
   
-		$ sudo dnf install Git
- 	
-	* Python:
-
+	Instalación de GIT
+```bash
+		sudo dnf install Git
+```
+* Python:
 		Instalación de Python
-
-		```bash
+```bash
 		sudo apt install python3
-		```
-
-	* pip:
-
+```
+* pip:
 		Instalación de pip
-
-		```bash
+```bash
 		sudo apt install python3-pip
-		```
-
-	* Boto3:
-
+```
+* Boto3:
 		Instalación de Boto3
-
-		```bash
+```bash
 		pip3 install boto3
-		```
-
-	* AWS CLI:
-
+```
+* AWS CLI:
 		Instalación de AWS CLI:
-		```bash
+```bash
 		curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
 		unzip awscliv2.zip
 		sudo ./aws/install
 		aws --version
-		```
+```
