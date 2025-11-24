@@ -1,6 +1,26 @@
 # ORTDevOps2025
 
-Requisitos necesarios previos al Despliegue de las Instancias y Aplicaciones en AWS:
+## Parte 1 : Script Bash 
+
+  ### Pasos para correcta configuración inicial:
+
+  ```bash
+  1. sudo (dnf/apt) install git -y && git clone https://github.com/Fabricio-Ramirez/ORTDevOps2025.git 
+  2. cd ./ORTDevOps2025
+  3. sudo chmod u+x ./ej1_crea_usuarios.sh && sudo chmod u+r ./Usuarios
+  ```
+
+  > [!WARNING]
+  > Para ejecutar ej1_crea_usuarios.sh se necesita Root / User parte de grupo Wheel haciendo uso de **SUDO** 
+  
+  ```bash
+  sudo ./ej1_crea_usuarios.sh [-i] [-c] (password) (archivousuarios)
+  ```
+
+## Parte 2 : Script Python 
+
+  > [!CAUTION]
+  > Requisitos necesarios previos al Despliegue de las Instancias y Aplicaciones en AWS:
 
 	* Cuenta de Github
 
@@ -14,28 +34,32 @@ Requisitos necesarios previos al Despliegue de las Instancias y Aplicaciones en 
 
 		Instalación de Python
 
-		$ sudo dnf install python
+		```bash
+		sudo apt install python3
+		```
 
 	* pip:
 
 		Instalación de pip
 
-		$ sudo dnf install pip
+		```bash
+		sudo apt install python3-pip
+		```
 
 	* Boto3:
 
 		Instalación de Boto3
 
-		$ pin install boto3
+		```bash
+		pip3 install boto3
+		```
 
 	* AWS CLI:
 
 		Instalación de AWS CLI:
-
-		$ curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
-
-		$ unzip awscliv2.zip
-
-		$ sudo ./aws/install
-
-		$ aws --version
+		```bash
+		curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
+		unzip awscliv2.zip
+		sudo ./aws/install
+		aws --version
+		```
