@@ -32,12 +32,12 @@
 * Python:
 		Instalación de Python
 ```bash
-		sudo apt install python3
+		sudo dnf install python3
 ```
 * pip:
 		Instalación de pip
 ```bash
-		sudo apt install python3-pip
+		sudo dnf install python3-pip
 ```
 * Boto3:
 		Instalación de Boto3
