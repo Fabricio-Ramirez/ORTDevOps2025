@@ -59,6 +59,6 @@ Las credenciales son reiniciadas una vez que el lab se cierra o a las 24 horas d
 1. Iniciar Lab 
 2. Hacer Click en AWS Details > Show AWS CLI
 3. Modificar credenciales en ~/.aws/credentials
-    aws_access_key_id = xxxxxx
-    aws_secret_access_key = xxxxx
-    aws_session_token = xxxx
+    - aws_access_key_id = xxxxxx
+    - aws_secret_access_key = xxxxx
+    - aws_session_token = xxxx
