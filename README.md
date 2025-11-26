@@ -1,11 +1,13 @@
 # ORTDevOps2025
 
+El siguiente proyecto es basado en la version Centos utilizada en el curso y es la que recomendamos utilizar
+
 ## Parte 1 : Script Bash 
 
   ### Pasos para correcta configuración inicial:
 
   ```bash
-  1. sudo (dnf/apt) install git -y && git clone https://github.com/Fabricio-Ramirez/ORTDevOps2025.git 
+  1. sudo dnf install git -y && git clone https://github.com/Fabricio-Ramirez/ORTDevOps2025.git 
   2. cd ./ORTDevOps2025
   3. sudo chmod u+x ./ej1_crea_usuarios.sh && sudo chmod u+r ./Usuarios
   ```
@@ -52,13 +54,13 @@ curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 aws --version
+aws configure
+#Aqui se ingresan aws_access_key_id, aws_secret_access_key, aws_session_token, region (us-east-1), Output json
+```
+  
+## Ejecutar Script Python
+```bash
+cd ./ORTDevOps2025 && chmod u+x ./ej2_AppEC2RDS.py
+python3 ./ej2_AppEC2RDS.py
 ```
 
-### Validar credenciales de AWS Academy:
-Las credenciales son reiniciadas una vez que el lab se cierra o a las 24 horas de creadas
-1. Iniciar Lab 
-2. Hacer Click en AWS Details > Show AWS CLI
-3. Modificar credenciales en ~/.aws/credentials
-    - aws_access_key_id = xxxxxx
-    - aws_secret_access_key = xxxxx
-    - aws_session_token = xxxx
