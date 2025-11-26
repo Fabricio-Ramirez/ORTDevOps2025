@@ -94,7 +94,6 @@ then
             else
             homeopt=""
         fi
-
    
         useradd $crearopcion $homeopt -c "$comentario" -s "$bashusr" -p "$(openssl passwd -6 "$CONTRASENA")" "$nombre"
 
@@ -155,4 +154,3 @@ else
     done 
 fi
 
-: 
