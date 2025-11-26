@@ -65,7 +65,7 @@ print ("Tiempo estimado: 2-3 minutos.")
 ec2.get_waiter('instance_status_ok').wait(InstanceIds=[instance_id])
 
 # Crea Security Group para permitir consultas web (HTTP) desde cualquier IP
-sg_name = "web-sg-boto3"
+sg_name = SG_EC2_NAME
 try:
     response = ec2.create_security_group(
         GroupName=sg_name,
