@@ -1,4 +1,5 @@
-#!/usr/bin/bash
+#!/bin/bash
+
 # ej1_crea_usuarios.sh
 # Crea usuarios a partir de un archivo con 5 campos separados por ":"
 # Formato de cada línea (se permiten líneas en blanco y comentarios con #):
@@ -22,12 +23,15 @@ do
         c)  # Guardar el argumento pasado a -c en la variable CONTRASENA
             CONTRASENA="$OPTARG"
 
-            if [ -z "$CONTRASENA" ]; then
-                echo "Error: La opción -c requiere un argumento de contraseña." >&2
-                exit 5
+            if [ -z "$CONTRASENA" ] && [ -n "$(echo $OPTERR)" ]; then
+                read -s -p "Introduzca contraseña para los usuarios: " CONTRASENA
+                echo
             fi
-
             echo "Opción -c: se guardó CONTRASENA='$CONTRASENA'"
+        ;;
+        :) # getopts devuelve ':' cuando falta el argumento para una opción que lo requiere
+            echo "Error: La opción -$OPTARG requiere un argumento." >&2
+            exit 5
         ;;
         *) echo "Opción inválida: -$OPTARG" >&2
            exit 10
@@ -38,7 +42,6 @@ done
 # Mover los parámetros posicionales para que $1 sea el primer argumento no-opción
 shift $((OPTIND - 1))
 
-maxlineas=$(wc -l < "$1")
 
 # Comprobar que hay un argumento (archivo) después de las opciones
 if [ -z "$1" ]
@@ -48,17 +51,14 @@ then
     exit 2
 fi
 
+maxlineas=$(wc -l < "$1")
+
 ArchivoUsrs="$1"
 
 if [ ! -f "$ArchivoUsrs" ] || [ ! -r "$ArchivoUsrs" ]
 then
     echo "Archivo '$ArchivoUsrs' no encontrado o no legible." >&2
     exit 3
-fi
-
-if [ -z "$CONTRASENA" ]
-then
-    CONTRASENA="BienvenidosaDevops123"
 fi
 
 usuarios_creados=0
@@ -154,4 +154,3 @@ else
     done 
 fi
 
- 

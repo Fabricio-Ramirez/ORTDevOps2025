@@ -1,4 +1,4 @@
-# Trabajo Obligatorio Devops 2025 
+# ORTDevOps2025
 
 ## Parte 1 : Script Bash 
 
@@ -17,28 +17,38 @@
   sudo ./ej1_crea_usuarios.sh [-i] [-c] (password) (archivousuarios)
   ```
 
-
 ## Parte 2 : Script Python 
 
   > [!CAUTION]
-  > Para un correcto uso del código, se necesitan instalar los siguientes servicios de manera mandatoria:
-1. Instalar Python:
-```bash
-  sudo apt install python3
-```
-2. Instalación de PIP
-```bash
-  sudo apt install python3-pip
-```
-3. Instalacion de AWS CLI
-```bash
- curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-  ```
-4. Instalación de BOTO3
-```bash
-  pip3 install boto3
-```
-- [ ] Clonar repositorio con HTTPS https://github.com/ORT-AII-ProgramacionDevOps/obligatorio.git como ZIP
+  > Requisitos necesarios previos al Despliegue de las Instancias y Aplicaciones en AWS:
 
+* Cuenta de Github
+* Git:
+  
+	Instalación de GIT
+```bash
+		sudo dnf install Git
+```
+* Python:
+		Instalación de Python
+```bash
+		sudo dnf install python3
+```
+* pip:
+		Instalación de pip
+```bash
+		sudo dnf install python3-pip
+```
+* Boto3:
+		Instalación de Boto3
+```bash
+		pip3 install boto3
+```
+* AWS CLI:
+		Instalación de AWS CLI:
+```bash
+		curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
+		unzip awscliv2.zip
+		sudo ./aws/install
+		aws --version
+```
