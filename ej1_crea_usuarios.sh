@@ -38,7 +38,7 @@ fi
 while getopts ":ic:" modificador # Procesa opciones -i (interactivo) y -c (contraseña)
 do
     case $modificador in
-          i) echo "Modo Interactivo activado" # Modo con salida detallada
+          i) echo -e "Modo Interactivo activado \n" # Modo con salida detallada
               INTERACTIVO=true
         ;;
         c)  # Opción -c: guarda la contraseña proporcionada para todos los usuarios
@@ -48,7 +48,7 @@ do
                 read -s -p "Introduzca contraseña para los usuarios: " CONTRASENA
                 echo
             fi
-            echo "Opción -c: se guardó CONTRASENA='$CONTRASENA'"
+            echo -e "Opción -c: se guardó CONTRASENA='$CONTRASENA'\n"
         ;;
         :) # Error: falta argumento obligatorio para una opción (-c sin valor)
             echo "Error: La opción -$OPTARG requiere un argumento." >&2
