@@ -11,9 +11,20 @@ El siguiente proyecto es basado en la version Centos utilizada en el curso y es 
   2. cd ./ORTDevOps2025
   3. sudo chmod u+x ./ej1_crea_usuarios.sh && sudo chmod u+r ./Usuarios
   ```
+  > El script hace uso del paquete "openssl". Mandatoria instalación
+  Debian-Ubuntu
+
+   ```bash
+  sudo apt-get install -y openssl
+  sudo yum install -y openssl
+  ```
+RHEL-CentOS
+ ```bash
+  sudo yum install -y openssl
+  ```
 
   > [!WARNING]
-  > Para ejecutar ej1_crea_usuarios.sh se necesita Root / User parte de grupo Wheel haciendo uso de **SUDO** 
+  > Para ejecutar ej1_crea_usuarios.sh se necesita Root / User parte de grupo Wheel haciendo uso de **SUDO**
   
   ```bash
   sudo ./ej1_crea_usuarios.sh [-i] [-c] (password) (archivousuarios)
