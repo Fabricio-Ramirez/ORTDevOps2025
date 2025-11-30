@@ -153,7 +153,7 @@ for i in $(seq 1 $maxlineas); do # Recorre cada número de línea de 1 a maxline
         fi
    
         # Ejecuta la creación del usuario con: comentario, shell, creación (o no) de home y contraseña cifrada
-        useradd $crearopcion $homeopt -c "$comentario" -s "$bashusr" -p "$(openssl passwd -6 "$CONTRASENA")" "$nombre"
+        useradd $crearopcion $homeopt -c "$comentario" -s "$bashusr" -p "$(openssl passwd -6 "$CONTRASENA")" "$nombre" 2>/dev/null
         #useradd -p espera un hash, no la contraseña en texto plano. Con OpenSSL generamos SHA-512 compatible con shadow.
 
         if [ $? -ne 0 ]; then # Si useradd falla, informa y salta a la siguiente línea
@@ -173,6 +173,7 @@ for i in $(seq 1 $maxlineas); do # Recorre cada número de línea de 1 a maxline
     done
     echo "Total de usuarios creados: $usuarios_creados" # Resumen final tras procesar todas las líneas
     exit 0
+
   ```
 
 ## Parte 2 : Script Python 
