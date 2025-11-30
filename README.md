@@ -186,7 +186,7 @@ Se recomienda ejecutar en cuenta AWS sin instancias ni Security Groups creados a
   
 	Instalación de GIT
 ```bash
-sudo dnf install git
+sudo dnf install git && git clone https://github.com/Fabricio-Ramirez/ORTDevOps2025.git 
 ```
 * Python:
 Instalación de Python
