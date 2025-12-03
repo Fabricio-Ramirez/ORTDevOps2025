@@ -463,5 +463,5 @@ EC2_public_ip = resp['Reservations'][0]['Instances'][0].get('PublicIpAddress')
 if not EC2_public_ip:
     raise Exception("No se pudo obtener la IP pública de la instancia EC2.")
 
-print ("Aplicación disponible accediendo en navegador modo Privado http://" + EC2_public_ip + "/index.php/")
+print ("Aplicación disponible accediendo en navegador modo Privado http://" + EC2_public_ip + "/login.php/")
    
