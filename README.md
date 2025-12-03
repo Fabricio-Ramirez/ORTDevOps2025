@@ -221,3 +221,15 @@ cd ./ORTDevOps2025 && sudo chmod u+x ./ej2_AppEC2RDS.py
 python3 ./ej2_AppEC2RDS.py
 ```
 
+## Aclaraciones respecto al Script:
+### Parte 1: 
+El Script crea por defecto una instancia EC2 y crea-asigna un SG que solo permite tráfico HTTP
+### Parte 2: 
+Se valida que una instancia de RDS no esté activa antes de crearla. En caso que exita se solicita la contraseña con que fue creada. Por negativa, se solicita contraseña para crearla. Se configura y asigna un SG para la RDS solo admitiendo trafico al puerto específico y desde el SG EC2 anteriormente creado en Parte 1
+### Parte 3: 
+Se envian las instrucciones de configuración para la EC2, descarga por Github Release el zip del repositorio base (creado por profesores) y configuraciones para hacer deploy de la app
+### Parte 4: 
+Se envia la consulta SQL y detalles para el despliegue final
+### Parte 5: 
+Se entrega por pantalla la IP Publica de la EC2 para ser accedida: http://xxxxxxxx/index.php/
+
