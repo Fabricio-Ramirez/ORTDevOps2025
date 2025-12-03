@@ -231,5 +231,5 @@ Se envian las instrucciones de configuración para la EC2, descarga por Github R
 ### Parte 4: 
 Se envia la consulta SQL y detalles para el despliegue final
 ### Parte 5: 
-Se entrega por pantalla la IP Publica de la EC2 para ser accedida: http://xxxxxxxx/index.php/
+Se entrega por pantalla la IP Publica de la EC2 para ser accedida: http://<IP-de-la-instancia>/login.php
 
